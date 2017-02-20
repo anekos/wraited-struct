@@ -2,5 +2,7 @@
 name = "wraited-struct"
 version = "0.1.0"
 authors = ["anekos <anekos@snca.net>"]
+description = "Read and write `struct` with byte array"
+license-file = "LICENSE"
 
 [dependencies]
