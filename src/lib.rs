@@ -11,15 +11,17 @@ use std::{io, mem, slice};
 /// extern crate wraited_struct;
 /// use std::fs::File;
 ///
-/// struct Customer {
+/// #[derive(Debug)]
+/// struct Something {
 ///     a: u8,
 ///     b: u16,
 ///     c: u32,
 /// }
 ///
 /// fn main() {
-///     let mut file = File::open("customer.bin").unwrap();
-///     wraited_struct::read::<Customer, File>(&mut file).unwrap();
+///     let mut file = File::open("something.bin").unwrap();
+///     let something = wraited_struct::read::<Something, File>(&mut file).unwrap();
+///     println!("{:?}", something);
 /// }
 /// ```
 pub unsafe fn read<T, R: io::Read>(reader: &mut R) -> io::Result<T> {
@@ -45,15 +47,15 @@ pub unsafe fn read<T, R: io::Read>(reader: &mut R) -> io::Result<T> {
 /// extern crate wraited_struct;
 /// use std::fs::File;
 ///
-/// struct Customer {
+/// struct Something {
 ///     a: u8,
 ///     b: u16,
 ///     c: u32,
 /// }
 ///
 /// fn main() {
-///     let mut file = File::create("customer.bin").unwrap();
-///     wraited_struct::write::<Customer, File>(&mut file, Customer { a: 97, b: 98, c: 99 }).unwrap();
+///     let mut file = File::create("something.bin").unwrap();
+///     wraited_struct::write::<Something, File>(&mut file, Something { a: 97, b: 98, c: 99 }).unwrap();
 /// }
 /// ```
 pub unsafe fn write<T, W: io::Write>(writer: &mut W, mut value: T) -> io::Result<usize> {
