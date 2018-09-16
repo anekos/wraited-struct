@@ -27,7 +27,7 @@ pub fn read<T, R: io::Read>(reader: &mut R) -> io::Result<T> {
     let num_bytes = mem::size_of::<T>();
     unsafe {
         let mut result: T = mem::uninitialized();
-        let mut buffer: &mut [u8] = slice::from_raw_parts_mut(&mut result as *mut T as *mut u8, num_bytes);
+        let buffer: &mut [u8] = slice::from_raw_parts_mut(&mut result as *mut T as *mut u8, num_bytes);
         match reader.read_exact(buffer) {
             Ok(()) => Ok(result),
             Err(e) => {
